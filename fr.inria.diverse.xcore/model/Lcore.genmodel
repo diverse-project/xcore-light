@@ -3,7 +3,7 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/fr.inria.diverse.xcore/src" modelPluginID="fr.inria.diverse.xcore"
     modelName="Lcore" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0" copyrightFields="false"
-    usedGenPackages="../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase"
+    usedGenPackages="../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.emf.codegen.ecore/model/GenModel.genmodel#//genmodel ../../org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types ../../org.eclipse.xtext.xbase/model/Xbase.genmodel#//xbase"
     operationReflection="true" importOrganizing="true">
   <foreignModel>Lcore.ecore</foreignModel>
   <genPackages prefix="Lcore" disposableProviderFactory="true" ecorePackage="Lcore.ecore#/">
@@ -39,6 +39,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Lcore.ecore#//XGenericType/upperBound"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Lcore.ecore#//XGenericType/typeArguments"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Lcore.ecore#//XGenericType/lowerBound"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Lcore.ecore#//XGenericType/type"/>
     </genClasses>
     <genClasses ecoreClass="Lcore.ecore#//XImportDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Lcore.ecore#//XImportDirective/importedNamespace"/>

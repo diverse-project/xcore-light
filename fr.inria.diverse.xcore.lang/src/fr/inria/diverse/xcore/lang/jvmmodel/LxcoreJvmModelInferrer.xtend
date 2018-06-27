@@ -1,10 +1,14 @@
 package fr.inria.diverse.xcore.lang.jvmmodel
 
-//import com.google.inject.Inject
-import fr.inria.diverse.xcore_light.lcore.XPackage
+import com.google.inject.Inject
+import fr.inria.diverse.xcore_light.lcore.*
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
-//import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder
+import org.eclipse.xtext.xbase.XExpression
+import org.eclipse.xtext.xbase.XbaseFactory
+import org.eclipse.xtext.common.types.JvmGenericType
+import org.eclipse.xtext.common.types.TypesFactory
 
 /**
  * <p>Infers a JVM model from the source model.</p> 
@@ -17,7 +21,7 @@ class LxcoreJvmModelInferrer extends AbstractModelInferrer {
 	/**
 	 * convenience API to build and initialize JVM types and their members.
 	 */
-//	@Inject extension JvmTypesBuilder
+	@Inject extension JvmTypesBuilder
 
 	/**
 	 * The dispatch method {@code infer} is called for each instance of the
@@ -42,18 +46,55 @@ class LxcoreJvmModelInferrer extends AbstractModelInferrer {
 	 *            rely on linking using the index if isPreIndexingPhase is
 	 *            <code>true</code>.
 	 */
-	def dispatch void infer(XPackage element, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
-		// Here you explain how your model is mapped to Java elements, by writing the actual translation code.
+	def dispatch void infer(XPackage xpack, IJvmDeclaredTypeAcceptor acceptor, boolean isPreIndexingPhase) {
+		for(XClassifier classifier:  xpack.classifiers) {
+			inferClassifier(classifier, acceptor, xpack.name)
+			
+		}
+	}
+	
+	def dispatch void inferClassifier(XEnum xenum, IJvmDeclaredTypeAcceptor acceptor, String xpackName) {
+		acceptor.accept(xenum.toEnumerationType(xpackName + "." + xenum.name)) [
+			for (XEnumLiteral enumLiteral: xenum.literals) {
+				it.members += enumLiteral.toEnumerationLiteral(enumLiteral.name) [
+					documentation = enumLiteral.documentation
+					val valLit = XbaseFactory.eINSTANCE.createXNumberLiteral()
+					valLit.value = enumLiteral.value + ""
+					it.initializer = valLit //
+				]
+			}
+		]
+	}
+	
+	def dispatch void inferClassifier(XClass xclass, IJvmDeclaredTypeAcceptor acceptor, String xpackName) {
+		acceptor.accept(xclass.toClass(xpackName + "." + xclass.name)) [
+			it.abstract = xclass.abstract
+			it.interface = xclass.interface
+			//todo manage generic type
+			//todo manage super type
+			//todo manage wraps
+			
+			for(XMember member: xclass.members) {
+				inferMember(member, acceptor, it)
+			}
+		]		
+	}
+	
+	def dispatch void inferMember(XAttribute attr, IJvmDeclaredTypeAcceptor acceptor, JvmGenericType newType) {
+		val jvmType = TypesFactory.eINSTANCE.createJvmPrimitiveType()
+		jvmType.simpleName = "int"
+		val typeRef = TypesFactory.eINSTANCE.createJvmParameterizedTypeReference
+		typeRef.type = jvmType
+		newType.members += attr.toField(attr.name, typeRef) 
+	}
+	
+	def dispatch void inferMember(XOperation op, IJvmDeclaredTypeAcceptor acceptor, JvmGenericType type) {
 		
-		// An implementation for the initial hello world example could look like this:
-// 		acceptor.accept(element.toClass("my.company.greeting.MyGreetings")) [
-// 			for (greeting : element.greetings) {
-// 				members += greeting.toMethod("hello" + greeting.name, typeRef(String)) [
-// 					body = '''
-//						return "Hello «greeting.name»";
-//					'''
-//				]
-//			}
-//		]
+	}
+	
+	
+	def dispatch void inferMember(XReference ref, IJvmDeclaredTypeAcceptor acceptor, JvmGenericType type) {
+		
+		
 	}
 }

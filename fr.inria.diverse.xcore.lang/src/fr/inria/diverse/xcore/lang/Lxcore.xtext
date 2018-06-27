@@ -6,6 +6,8 @@ import "http://www.eclipse.org/emf/2002/Ecore"
 import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
 import "http://www.eclipse.org/xtext/common/JavaVMTypes" as javaVMTypes
 import "http://www.eclipse.org/xtext/xbase/Xtype" as xtype
+import "http://www.eclipse.org/emf/2002/GenModel" as genmodel
+
 XPackage returns XPackage:
 	{XPackage}
 	'package'
@@ -92,6 +94,7 @@ XAttribute returns XAttribute:
 	  (iD?='id')?
 	)
     name=ID
+    type=XGenericType
     ('=' defaultValueLiteral=STRING)?
 	/*
 	 * In scope for getBody should be what's visible in AbcImpl
@@ -168,8 +171,7 @@ XTypeParameter returns XTypeParameter :
 ;
 	
 XGenericType returns XGenericType:
-	{XGenericType}
-  (=>'<' typeArguments+=XGenericTypeArgument (',' typeArguments+=XGenericTypeArgument)* '>')?
+  type=[genmodel::GenBase] (=>'<' typeArguments+=XGenericTypeArgument (',' typeArguments+=XGenericTypeArgument)* '>')?
 ;
 
 XGenericTypeArgument returns XGenericType :
