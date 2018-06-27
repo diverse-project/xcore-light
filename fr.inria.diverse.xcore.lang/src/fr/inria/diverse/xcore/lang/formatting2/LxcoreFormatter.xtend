@@ -26,9 +26,8 @@ class LxcoreFormatter extends XbaseFormatter {
 	
 	
 	@Inject extension LxcoreGrammarAccess
-	@Inject extension AbstractHiddenRegionFormatter
-	@Inject extension LcorePackage
-	@Inject extension XbasePackage
+	extension LcorePackage
+	extension XbasePackage
 
   def protected dispatch void format(XPackage xPackage, extension IFormattableDocument format)
   {
