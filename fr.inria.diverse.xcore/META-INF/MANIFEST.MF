@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: fr.inria.diverse.xcore
+Bundle-SymbolicName: fr.inria.diverse.xcore; singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Require-Bundle: org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase;bundle-version="2.12.0"
+Export-Package: fr.inria.diverse.xcore_light.lcore,
+ fr.inria.diverse.xcore_light.lcore.impl,
+ fr.inria.diverse.xcore_light.lcore.util
