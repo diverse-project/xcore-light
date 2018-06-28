@@ -5,20 +5,19 @@ package fr.inria.diverse.xcore.lang.formatting2
 
 import com.google.inject.Inject
 import fr.inria.diverse.xcore.lang.services.LxcoreGrammarAccess
-import fr.inria.diverse.xcore_light.lcore.LcorePackage
-import fr.inria.diverse.xcore_light.lcore.XAttribute
-import fr.inria.diverse.xcore_light.lcore.XClass
-import fr.inria.diverse.xcore_light.lcore.XDataType
-import fr.inria.diverse.xcore_light.lcore.XEnum
-import fr.inria.diverse.xcore_light.lcore.XGenericType
-import fr.inria.diverse.xcore_light.lcore.XOperation
-import fr.inria.diverse.xcore_light.lcore.XPackage
-import fr.inria.diverse.xcore_light.lcore.XParameter
-import fr.inria.diverse.xcore_light.lcore.XReference
-import fr.inria.diverse.xcore_light.lcore.XTypeParameter
 import java.util.List
+import lcore.LcorePackage
+import lcore.XAttribute
+import lcore.XClass
+import lcore.XDataType
+import lcore.XEnum
+import lcore.XGenericType
+import lcore.XOperation
+import lcore.XPackage
+import lcore.XParameter
+import lcore.XReference
+import lcore.XTypeParameter
 import org.eclipse.xtext.formatting2.IFormattableDocument
-import org.eclipse.xtext.formatting2.internal.AbstractHiddenRegionFormatter
 import org.eclipse.xtext.xbase.XbasePackage
 import org.eclipse.xtext.xbase.formatting2.XbaseFormatter
 

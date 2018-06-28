@@ -4,7 +4,7 @@
 package fr.inria.diverse.xcore.lang.tests
 
 import com.google.inject.Inject
-import fr.inria.diverse.xcore_light.lcore.XPackage
+import lcore.XPackage
 import org.eclipse.xtext.testing.InjectWith
 import org.eclipse.xtext.testing.XtextRunner
 import org.eclipse.xtext.testing.util.ParseHelper

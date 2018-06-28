@@ -1,7 +1,7 @@
 package fr.inria.diverse.xcore.lang.jvmmodel
 
 import com.google.inject.Inject
-import fr.inria.diverse.xcore_light.lcore.*
+import lcore.*
 import org.eclipse.xtext.xbase.jvmmodel.AbstractModelInferrer
 import org.eclipse.xtext.xbase.jvmmodel.IJvmDeclaredTypeAcceptor
 import org.eclipse.xtext.xbase.jvmmodel.JvmTypesBuilder

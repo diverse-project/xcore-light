@@ -11,7 +11,7 @@
       <!-- @generated Lcore -->
       <package
             uri="http://www.inria.fr/diverse/xcore_light/Lcore"
-            class="fr.inria.diverse.xcore_light.lcore.LcorePackage"
+            class="lcore.LcorePackage"
             genModel="model/Lcore.genmodel"/>
    </extension>
 
